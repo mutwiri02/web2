@@ -1,0 +1,39 @@
+{
+  "name": "se-2",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "account": "pnpm --filter=@se-2/foundry account",
+    "chain": "anvil --config-out localhost.json",
+    "compile": "pnpm --filter=@se-2/foundry compile",
+"deploy-contract": "$HOME/.foundry/bin/forge build && $HOME/.foundry/bin/forge script packages/foundry/script/Deploy.s.sol:DeployScript --rpc-url http://127.0.0.1:8545 --broadcast --legacy -vvvv && node packages/foundry/script/generateTsAbis.js",  
+  "deploy:verify": "pnpm --filter=@se-2/foundry deploy:verify",
+    "fork": "pnpm --filter=@se-2/foundry fork",
+    "foundry:lint": "pnpm --filter=@se-2/foundry lint",
+    "foundry:test": "pnpm --filter=@se-2/foundry test",
+    "generate": "pnpm --filter=@se-2/foundry generate",
+    "postinstall": "husky install",
+    "next:check-types": "pnpm --filter=@se-2/nextjs check-types",
+    "next:format": "pnpm --filter=@se-2/nextjs format",
+    "next:lint": "pnpm --filter=@se-2/nextjs lint",
+    "precommit": "lint-staged",
+    "prepare": "install-self-peers --npm -- --ignore-scripts",
+    "start": "pnpm --filter=@se-2/nextjs dev",
+    "test": "pnpm foundry:test",
+    "vercel": "pnpm --filter=@se-2/nextjs vercel",
+    "vercel:yolo": "pnpm --filter=@se-2/nextjs vercel:yolo",
+    "verify": "pnpm --filter=@se-2/foundry verify"
+  },
+  "resolutions": {
+    "usehooks-ts@^2.7.2": "patch:usehooks-ts@npm:^2.7.2#./.pnpm/patches/usehooks-ts-npm-2.7.2-fceffe0e43.patch"
+  },
+  "devDependencies": {
+    "husky": "~8.0.3",
+    "lint-staged": "~13.2.2"
+  },
+  "dependencies": {
+    "@team-griffin/install-self-peers": "^1.1.1",
+    "usehooks-ts": "link:patch:usehooks-ts@npm:^2.7.2#./.pnpm/patches/usehooks-ts-npm-2.7.2-fceffe0e43.patch"
+  }
+}
